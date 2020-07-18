@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import DrawnCard from "./components/DrawnCard/DrawnCard";
 import getDeck from "./util/createCards";
 import "./App.css";
-import cardFaceDown from "./resources/poker-qr/1B.svg";
+import cardFaceDown from "./assets/poker-qr/1B.svg";
 
 const App = () => {
   const [cards, updateCards] = useState(getDeck());
