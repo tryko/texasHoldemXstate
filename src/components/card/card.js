@@ -1,19 +1,24 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from "react";
+import './Card.css';
+const Card = ({ name, onClick }) => {
+  const [icon, setIcon] = useState("");
+  const [isFaceUp, setIsFaceUp] = useState(false);
 
-const Card = (props) => {
-    // let [Icon, setIcon] = useState(props.name);
-    let [Svg, setSvg] = useState(<div/>);
-    useEffect( () => {
-        const loadIcon = async () => {
-            let importedIcon = await import(`../../assets/poker-qr/${props.name}.svg`);
-            console.log(importedIcon)
-            setSvg(importedIcon.ReactComponent);
-        }
-      loadIcon();
-      
-    }, [props.name]);
-  
-    return <div></div>
-  };
+  useEffect(() => {
+    const importSVG = async () => {
+      const imgName = isFaceUp ? name : "1B";
+      let importedIcon = await import(`./../../assets/poker-qr/${imgName}.svg`);
+      setIcon(importedIcon.default);
+    };
+    importSVG();
+  }, [name, isFaceUp]);
 
-  export default Card;
+  const handleClick = () => {
+    onClick(setIsFaceUp);
+    // setIsFaceUp(!isFaceUp);
+  }
+
+  return <img src={icon} className="image-card" alt="" onClick={handleClick}/>;
+};
+
+export default Card;

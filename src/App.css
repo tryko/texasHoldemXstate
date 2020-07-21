@@ -4,24 +4,56 @@
 
 @tailwind utilities;
 
+body{
+  background-color: rgb(171, 236, 230);
+}
 .App {
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  margin: 20px;
-  height: 700px;
+  padding: 20px;
+  width: 100vw;
+  height:100vh;
 }
 
+.flex-wrapper{
+  display: flex;
+  margin-bottom: 50px;
+  flex-direction: column;
+  height: fit-content;
+}
 
-.Deck {
+.deck-wrapper{
+  display: flex;
+  align-self: center;
+  width: fit-content;
+  height: fit-content;
+}
+
+/* .Deck {
   display: flex;
   justify-content: center;
+  
+} */
+
+.card {
+  height: 280px;
+  width: 200px;
+  border-radius: 12px;
+  border: 3px solid white;
+  padding: 4px;
+  margin: 6px;
 }
 
-.Card {
-  height: 336px;
-  width: 240px;
-  border-radius: 5px;
-  background-color: gray;
+.btn-container{
+  display: flex;
+  align-self: center;
+  flex-direction: column;
+  width: 100px;
+  height: 100%;
 }
+
+
+
+  /* box-shadow: 5px 6px 5px -4px rgba(0,0,0,0.75); */
+
+  .addonMargin{
+    margin-left: 100px;
+  }
