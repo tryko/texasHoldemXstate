@@ -1,4 +1,3 @@
-/* height will adjust according to width*/
 .image-card{
     height: 265px;
     width: 186px
@@ -21,10 +20,6 @@
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   }
   
-  /* .flip-card:hover .flip-card-inner {
-    transform: rotateY(180deg);
-  }
-   */
    .flip-it{
     transform: rotateY(180deg);
    }

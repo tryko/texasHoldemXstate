@@ -2,7 +2,6 @@ import React from "react";
 import "./Deck.css";
 import "./../../assets/main.css";
 import Card from "../Card/Card";
-// import { createCardProps } from "./../../util/util";
 
 const Deck = ({ cards, backFace }) => {
   const createCardProps = (card, i, cardsLength) => {

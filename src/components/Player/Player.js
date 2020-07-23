@@ -4,7 +4,6 @@ import "./../../assets/main.css";
 import Card from "../Card/Card";
 
 const Player = ({ name, cards, id, backFace }) => {
-
   
   return (
     <div>

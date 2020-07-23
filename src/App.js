@@ -9,7 +9,6 @@ import "./App.css";
 import "./assets/main.css";
 
 const App = () => {
-  const cardFaceDown = [{ value: "1", suit: "B" }];
   const [cards, setCards] = useState([]);
   const [backFace, setBackFace] = useState("");
   const [players, setPlayers] = useState([
@@ -24,8 +23,7 @@ const App = () => {
       cards: [],
     },
   ]);
-
-  const [numOfCardForPlayer, setNumOfCardForPlayer] = useState(2);
+  const numOfCardForPlayer = 2;
 
   useEffect(() => {
     const gettingCards = async () => {
@@ -62,6 +60,7 @@ const App = () => {
     { name: "Deal", func: handleDraw },
     { name: "Shuffle", func: handleShuffle },
   ];
+  
   return (
     <div className="App">
       <div className="flex-wrapper">
