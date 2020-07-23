@@ -1,10 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./Card.css";
 
 const Card = ({ frontFace, onClick, inLineStyle, backFace }) => {
-  // const [icon, setIcon] = useState("");
-  // // const [imgNames, setimgNames] = useState(["1B",name]);
-  // const [faces, setFaces] = useState([""])
+
   const [isFaceUp, setIsFaceUp] = useState(false);
   const handleClick = () => {
     if (typeof onClick === "function") onClick(setIsFaceUp);
@@ -18,7 +16,6 @@ const Card = ({ frontFace, onClick, inLineStyle, backFace }) => {
             src={backFace}
             className="image-card"
             alt=""
-            // onClick={handleClick}
           />
         </div>
         {typeof onClick === "function" && (
@@ -27,7 +24,6 @@ const Card = ({ frontFace, onClick, inLineStyle, backFace }) => {
               src={frontFace}
               className="image-card"
               alt=""
-              // onClick={handleClick}
             />
           </div>
         )}
