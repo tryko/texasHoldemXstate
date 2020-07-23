@@ -77,7 +77,6 @@ const setDeck = () => {
     card.value = cardValues[i % 13];
     card.suit = cardSuits[Math.floor(i / 13)];
     card.name = card.value + card.suit;
-    // getFileName(card.name).then(fileName => {console.log(fileName); card.fileName = fileName});
     cards.push(card);
   }
   return cards;
