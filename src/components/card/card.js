@@ -1,24 +1,39 @@
 import React, { useEffect, useState } from "react";
-import './Card.css';
-const Card = ({ name, onClick }) => {
-  const [icon, setIcon] = useState("");
+import "./Card.css";
+
+const Card = ({ frontFace, onClick, inLineStyle, backFace }) => {
+  // const [icon, setIcon] = useState("");
+  // // const [imgNames, setimgNames] = useState(["1B",name]);
+  // const [faces, setFaces] = useState([""])
   const [isFaceUp, setIsFaceUp] = useState(false);
-
-  useEffect(() => {
-    const importSVG = async () => {
-      const imgName = isFaceUp ? name : "1B";
-      let importedIcon = await import(`./../../assets/poker-qr/${imgName}.svg`);
-      setIcon(importedIcon.default);
-    };
-    importSVG();
-  }, [name, isFaceUp]);
-
   const handleClick = () => {
-    onClick(setIsFaceUp);
-    // setIsFaceUp(!isFaceUp);
-  }
+    if (typeof onClick === "function") onClick(setIsFaceUp);
+  };
 
-  return <img src={icon} className="image-card" alt="" onClick={handleClick}/>;
+  return (
+    <div className="flip-card" style={inLineStyle} onClick={handleClick}>
+      <div className={`flip-card-inner  ${isFaceUp ? "flip-it" : ""}`}>
+        <div className="flip-card-front">
+          <img
+            src={backFace}
+            className="image-card"
+            alt=""
+            // onClick={handleClick}
+          />
+        </div>
+        {typeof onClick === "function" && (
+          <div className="flip-card-back">
+            <img
+              src={frontFace}
+              className="image-card"
+              alt=""
+              // onClick={handleClick}
+            />
+          </div>
+        )}
+      </div>
+    </div>
+  );
 };
 
 export default Card;

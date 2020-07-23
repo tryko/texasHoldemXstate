@@ -16,7 +16,7 @@ const DrawnCard = ({suit, value}) => {
   return (
     <div>
         <div className="Deck">
-          <div className="Card" onClick={toggleFlip}>
+          <div className="card-place" onClick={toggleFlip}>
           { !isFaceUp && <Card name={"1B"}/> }
            { isFaceUp && <Card name={"" + value + suit}/> }
           </div>

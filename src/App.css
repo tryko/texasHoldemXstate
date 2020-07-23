@@ -4,36 +4,36 @@
 
 @tailwind utilities;
 
-body{
+body {
   background-color: rgb(171, 236, 230);
 }
 .App {
   padding: 20px;
   width: 100vw;
-  height:100vh;
+  height: 100vh;
 }
 
-.flex-wrapper{
+.flex-wrapper {
   display: flex;
   margin-bottom: 50px;
   flex-direction: column;
   height: fit-content;
 }
 
-.deck-wrapper{
+.deck-wrapper {
   display: flex;
   align-self: center;
   width: fit-content;
   height: fit-content;
 }
 
-/* .Deck {
+.players-wrapper {
   display: flex;
-  justify-content: center;
-  
-} */
+  justify-content: space-between;
+  width: 100%;
+}
 
-.card {
+.card-place {
   height: 280px;
   width: 200px;
   border-radius: 12px;
@@ -42,7 +42,7 @@ body{
   margin: 6px;
 }
 
-.btn-container{
+.btn-container {
   display: flex;
   align-self: center;
   flex-direction: column;
@@ -50,10 +50,8 @@ body{
   height: 100%;
 }
 
+/* box-shadow: 5px 6px 5px -4px rgba(0,0,0,0.75); */
 
-
-  /* box-shadow: 5px 6px 5px -4px rgba(0,0,0,0.75); */
-
-  .addonMargin{
-    margin-left: 100px;
-  }
+.addonMargin {
+  margin-left: 100px;
+}

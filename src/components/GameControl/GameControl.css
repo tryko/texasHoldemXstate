@@ -2,12 +2,13 @@
   display: flex;
   align-self: center;
   flex-direction: column;
-  width: 100px;
+  width: 10px;
   height: 100%;
+  margin-left: 20px;
 }
 
-.btn{
-    margin: 5px;
-    width: 60px;
-    border: indigo 2px solid;
-  }
+.btn {
+  margin: 5px;
+  width: 60px;
+  border: indigo 2px solid;
+}
