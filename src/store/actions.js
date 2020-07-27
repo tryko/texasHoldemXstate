@@ -1,76 +1,51 @@
-import { assign } from "xstate"
+// function drawOneCommunity({ deck, communityCards, ...rest }) {
+//   const card = deck.pop()
+//   return {
+//     ...rest,
+//     deck: [...deck],
+//     communityCards: [...communityCards, card]
+//   }
+// }
 
-// turn to functions
+// function burnOneFromDeck({ deck, discardPile, ...rest }) {
+//   const card = deck.pop()
+//   return {
+//     ...rest,
+//     deck: [...deck],
+//     discardPile: [...discardPile, card]
+//   }
+// }
 
-function drawFromDeck({ deck }) {
+// export function dealOneCard(context) {
+//   const res = burnOneFromDeck(context)
+//   return drawOneCommunity(res)
+// }
 
-}
+// export function dealFlop(context) {
+//   const fns = [burnOneFromDeck, drawOneCommunity, drawOneCommunity, drawOneCommunity]
+//   const newContext = fns.reduce((ctx, fn) => fn(ctx), context)
+//   return newContext
+// }
 
-function drawOneCommunity({deck, roundCards}) {
-    const card = deck.pop()
-    return {
-      deck,
-      roundCards: [...roundCards, card]
-    }
-}
-
-function burnOneCommunity() {}
-
-function dealFlop() {
-  burnOneCommunity()
-  drawOneCommunity()
-  drawOneCommunity()
-  drawOneCommunity()
-}
-
-export const actions = {
-  deal: {
-    DRAW: assign((context, event) => {
-      const { deck, players, numOfCardsForPlayer } = context
-      const numOfCardsLeft = deck.length - 1 - numOfCardsForPlayer * players.length
-      const drawnCards = deck.filter((c, i) => i > numOfCardsLeft)
-      const playersWithCards = players.map((p) => {
-        return {
-          ...p,
-          cards: drawnCards.splice(0, 2)
-        }
-      })
-      const filteredDeck = deck.filter((c, i) => !(i > numOfCardsLeft))
-      return {
-        ...context,
-        deck: filteredDeck,
-        players: playersWithCards
-      }
-    })
-  },
-  flop: {
-    DRAW: assign((context, event) => {
-      const { deck } = context
-      const numOfCardsLeft = deck.length - 4 - 1
-      const drawnCards = deck.filter((c, i) => i > numOfCardsLeft)
-      const discardedCard = drawnCards.splice(0, 1)
-      const filteredDeck = deck.filter((c, i) => !(i > numOfCardsLeft))
-      return {
-        ...context,
-        deck: filteredDeck,
-        roundCards: drawnCards,
-        discardPile: discardedCard
-      }
-    })
-  },
-  turn: {
-    DRAW: assign((context, event) => {
-      const { deck, roundCards, discardPile } = context
-      const numOfCardsLeft = deck.length - 2 - 1
-      const drawnCards = deck.filter((c, i) => i > numOfCardsLeft)
-      const discardedCard = drawnCards.splice(0, 1)
-      const filteredDeck = deck.filter((c, i) => !(i > numOfCardsLeft))
-      return {
-        ...context,
-        deck: filteredDeck,
-        roundCards: [...roundCards, ...drawnCards],
-        discardPile: [...discardPile, ...discardedCard]
-      }
-    })
+export function dealToPlayers({ deck, players, ...rest }) {
+  return {
+    ...rest,
+    players: players.map((p) => ({
+      ...p,
+      cards: [deck.pop(), deck.pop()]
+    })),
+    deck: [...deck]
   }
 }
+
+export function drawCommunityAndDiscard(context, amount) {
+  const { communityCards, discardPile, deck } = context
+  return {
+    ...context,
+    discardPile: [...discardPile, deck.pop()],
+    communityCards: [...communityCards, ...deck.filter((c, i) => i > deck.length - 1 - amount)],
+    deck: deck.filter((c, i) => i < deck.length - 1 - amount)
+  }
+}
+
+

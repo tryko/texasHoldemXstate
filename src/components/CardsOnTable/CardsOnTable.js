@@ -2,7 +2,7 @@ import React from "react"
 import Card from "../Card/Card"
 import "./CardsOnTable.css"
 
-const CardsOnTable = ({ backFace, discardPile, roundCards }) => {
+const CardsOnTable = ({ backFace, discardPile, communityCards }) => {
   return (
     <div className="round-cards">
       <div className="discarded-cards">
@@ -19,9 +19,9 @@ const CardsOnTable = ({ backFace, discardPile, roundCards }) => {
         ))}
       </div>
       <div className="playing-cards">
-        {roundCards.map((card) => (
-          <div class="card-wrapper">
-            <Card key={card.id} name={card.value + card.suit} backFace={card.fileName} />
+        {communityCards.map((card) => (
+          <div className="card-wrapper" key={card.id}>
+            <Card  name={card.value + card.suit} backFace={card.fileName} />
           </div>
         ))}
       </div>

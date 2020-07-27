@@ -10,10 +10,6 @@ body {
   flex-direction: column;
 }
 
-.flex-wrapper {
-  height: fit-content;
-}
-
 .deck-wrapper {
   display: flex;
   align-self: center;

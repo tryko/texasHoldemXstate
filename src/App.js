@@ -14,7 +14,7 @@ const App = () => {
   const [current, send] = useMachine(gameMachine)
 
   const {
-    context: { deck: ctxDeck, players: ctxPlayers, roundCards: ctxRoundCards, discardPile: ctxDiscardPile }
+    context: { deck: ctxDeck, players: ctxPlayers, communityCards: ctxcommunityCards, discardPile: ctxDiscardPile }
   } = current
 
   useEffect(() => {
@@ -44,7 +44,7 @@ const App = () => {
           </div>
         </div>
       </div>
-      <CardsOnTable roundCards={ctxRoundCards} discardPile={ctxDiscardPile} backFace={backFace} />
+      <CardsOnTable communityCards={ctxcommunityCards} discardPile={ctxDiscardPile} backFace={backFace} />
       <div className="flex-wrapper">
         <div className="players-wrapper">
           {ctxPlayers.map((p) => {

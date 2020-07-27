@@ -1,7 +1,7 @@
 import { Machine, assign } from "xstate"
 import { getCards, shuffle } from "../util/util"
 import { players } from "./initData"
-import { actions } from "./actions"
+import { dealToPlayers, drawCommunityAndDiscard } from "./actions"
 
 async function invokeGetCards() {
   const cards = await getCards()
@@ -17,7 +17,7 @@ export const gameMachine = Machine({
     discardPile: [],
     players: players,
     numOfCardsForPlayer: 2,
-    roundCards: [], // change to community
+    communityCards: [], // change to community
     drawnCards: []
   },
   on: {
@@ -51,7 +51,7 @@ export const gameMachine = Machine({
       on: {
         DRAW: {
           target: "flop",
-          actions: actions.deal.DRAW
+          actions: assign(dealToPlayers)
         }
       }
     },
@@ -59,7 +59,7 @@ export const gameMachine = Machine({
       on: {
         DRAW: {
           target: "turn",
-          actions: actions.flop.DRAW
+          actions: assign((context) => drawCommunityAndDiscard(context, 3))
         }
       }
     },
@@ -67,7 +67,7 @@ export const gameMachine = Machine({
       on: {
         DRAW: {
           target: "river",
-          actions: actions.turn.DRAW
+          actions: assign((context) => drawCommunityAndDiscard(context, 1))
         }
       }
     },
@@ -75,7 +75,7 @@ export const gameMachine = Machine({
       on: {
         DRAW: {
           target: "deal",
-          actions: actions.turn.DRAW
+          actions: assign((context) => drawCommunityAndDiscard(context, 1))
         }
       }
     }
