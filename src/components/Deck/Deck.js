@@ -1,7 +1,6 @@
-import React from "react";
-import "./Deck.css";
-import "./../../assets/main.css";
-import Card from "../Card/Card";
+import React from "react"
+import "./Deck.css"
+import Card from "../Card/Card"
 
 const Deck = ({ cards, backFace }) => {
   const createCardProps = (card, i, cardsLength) => {
@@ -15,19 +14,18 @@ const Deck = ({ cards, backFace }) => {
         zIndex: i,
       },
       backFace: backFace,
-    };
-    if(i === cardsLength - 1)cardProps.onClick = (setIsFaceUp) => setIsFaceUp((prevState) => !prevState);
-    return cardProps;
-  };
+    }
+    if (i === cardsLength - 1) cardProps.onClick = (setIsFaceUp) => setIsFaceUp((prevState) => !prevState)
+    return cardProps
+  }
 
-  console.log(cards);
   return (
     <div className="card-place">
       {cards.map((card, i) => {
-        return <Card {...createCardProps(card, i, cards.length)} />;
+        return <Card {...createCardProps(card, i, cards.length)} />
       })}
     </div>
-  );
-};
+  )
+}
 
-export default Deck;
+export default Deck

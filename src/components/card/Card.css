@@ -1,12 +1,12 @@
 .image-card{
-    height: 265px;
-    width: 186px
+    height: 142px;
+    width: 100px
   }
 
   .flip-card {
     background-color: transparent;
-    width: 185px;
-    height: 265px;
+    height: 142px;
+    width: 100px;
     perspective: 1000px;
   }
   

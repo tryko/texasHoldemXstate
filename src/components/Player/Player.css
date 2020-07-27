@@ -1,8 +1,8 @@
 .hand-place {
   display: flex;
   justify-content: space-between;
-  width: 400px;
-  height: 285px;
+  width: 200px;
+  height: 157px;
   border-radius: 12px;
   border: 3px solid white;
   padding: 5px;

@@ -1,90 +1,59 @@
-import React, { useEffect, useState } from "react";
-import Deck from "./components/Deck/Deck";
-import { getCards, getFileName, shuffle, makeid } from "./util/util";
-
-import GameControl from "./components/GameControl/GameControl";
-import Player from "./components/Player/Player";
-
-import "./App.css";
-import "./assets/main.css";
+import React, { useEffect, useState } from "react"
+import { useMachine } from "@xstate/react"
+import Deck from "./components/Deck/Deck"
+import { getFileName } from "./util/util"
+import { gameMachine } from "./store/gameMachine"
+// import GameControl from "./components/GameControl/GameControl"
+import Player from "./components/Player/Player"
+import Control from "./components/GameControl/Control"
+import CardsOnTable from "./components/CardsOnTable/CardsOnTable"
+import "./App.css"
 
 const App = () => {
-  const [cards, setCards] = useState([]);
-  const [backFace, setBackFace] = useState("");
-  const [players, setPlayers] = useState([
-    {
-      name: "Jeff",
-      id: makeid(7),
-      cards: [],
-    },
-    {
-      name: "Troy",
-      id: makeid(7),
-      cards: [],
-    },
-  ]);
-  const numOfCardForPlayer = 2;
+  const [backFace, setBackFace] = useState("")
+  const [current, send] = useMachine(gameMachine)
+
+  const {
+    context: { deck: ctxDeck, players: ctxPlayers, roundCards: ctxRoundCards, discardPile: ctxDiscardPile }
+  } = current
 
   useEffect(() => {
     const gettingCards = async () => {
-      const cards = await getCards();
-      const backOfCard = await getFileName("1B");
-      const shuffledCards = shuffle(cards)
-      setCards(shuffledCards);
-      setBackFace(backOfCard);
-    };
-    gettingCards();
-  }, []);
+      const backOfCard = await getFileName("1B")
+      setBackFace(backOfCard)
+    }
+    gettingCards()
+  }, [])
 
   const handleDraw = (e) => {
-    if (cards.length) {
-      console.log(cards);
-      const cardsLeft = cards.length - 1 - numOfCardForPlayer * players.length;
-      const drawnCards = cards.filter((c, i) => i > cardsLeft);
-      const newPlayers = players.map((p) => {
-        return {
-          ...p,
-          cards: drawnCards.splice(0, 2),
-        };
-      });
-      setCards(cards.filter((c, i) => !(i > cardsLeft)));
-      setPlayers(newPlayers);
-    }
-  };
+    if (ctxDeck.length) send("DRAW")
+  }
 
   const handleShuffle = () => {
-    setCards(shuffle(cards));
-  };
+    if (ctxDeck.length) send("SHUFFLE")
+  }
 
-  const controls = [
-    { name: "Deal", func: handleDraw },
-    { name: "Shuffle", func: handleShuffle },
-  ];
-  
   return (
     <div className="App">
       <div className="flex-wrapper">
         <div className="deck-wrapper addonMargin">
-          <Deck cards={cards} numOfCardPlaces={1} backFace={backFace} />
-          <GameControl controls={controls} />
+          <Deck cards={ctxDeck} numOfCardPlaces={1} backFace={backFace} />
+          <div className="game-control">
+            <Control name={current.value} func={handleDraw} />
+            <Control name="shuffle" func={handleShuffle} />
+          </div>
         </div>
       </div>
+      <CardsOnTable roundCards={ctxRoundCards} discardPile={ctxDiscardPile} backFace={backFace} />
       <div className="flex-wrapper">
         <div className="players-wrapper">
-          {players.map((p) => {
-            return (
-              <Player
-                key={p.id}
-                name={p.name}
-                cards={p.cards}
-                backFace={backFace}
-              />
-            );
+          {ctxPlayers.map((p) => {
+            return <Player key={p.id} name={p.name} cards={p.cards} backFace={backFace} />
           })}
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default App;
+export default App

@@ -11,4 +11,5 @@
   margin: 5px;
   width: 60px;
   border: indigo 2px solid;
+  text-transform: capitalize;
 }
