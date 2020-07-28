@@ -1,7 +1,6 @@
 import React from "react"
 import Community from "./Community/Community"
 import DiscardPile from "./DiscardPile/DiscardPile"
-import "./CardsOnTable.css"
 
 const CardsOnTable = ({ backFace, discardPile, communityCards }) => {
   return (

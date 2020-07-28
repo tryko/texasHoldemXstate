@@ -1,9 +1,3 @@
-.game-control {
-  display: flex;
-  flex-direction: column;
-  /* width: 10px; */
-}
-
 .btn {
   margin: 5px;
   width: 60px;

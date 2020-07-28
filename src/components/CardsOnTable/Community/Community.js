@@ -1,5 +1,4 @@
 import React from "react"
-import "./Community.css"
 import Card from "../../Card/Card"
 
 const Community = ({ communityCards }) => {
