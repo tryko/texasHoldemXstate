@@ -4,7 +4,7 @@ import "./FlexWrapper.css"
 const FlexWrapper = ({ children, isDeck}) => {
   return (
     <div className="flex-wrapper">
-      <div className={isDeck? "deck-wrapper" : ""}>{children}</div>
+      <div className={isDeck? "deck-wrapper" : "players-wrapper"}>{children}</div>
     </div>
   )
 }

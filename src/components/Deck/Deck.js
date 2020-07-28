@@ -1,10 +1,10 @@
 import React from "react"
 import FlexWrapper from "./../FlexWrapper/FlexWrapper"
+import DeckCards from './DeckCards/DeckCards'
 import Control from "./../GameControl/Control"
 import GameControl from "./../GameControl/GameControl"
 import "./Deck.css"
 
-import Card from "../Card/Card"
 const Deck = ({ deck, backFace, name, send }) => {
   const handleDraw = (e) => {
     if (deck.length) send("DRAW")
@@ -16,11 +16,7 @@ const Deck = ({ deck, backFace, name, send }) => {
 
   return (
     <FlexWrapper isDeck>
-      <div className="card-place">
-        {deck.map((card, i) => {
-          return <Card key={card.id} backFace={backFace.fileName} cardIndex={i} />
-        })}
-      </div>
+      <DeckCards deck={deck} backFace={backFace}/>
       <GameControl>
         <Control name={name} func={handleDraw} />
         <Control name="shuffle" func={handleShuffle} />

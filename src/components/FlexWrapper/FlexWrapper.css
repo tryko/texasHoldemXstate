@@ -8,3 +8,9 @@
     width: fit-content;
     height: fit-content;
   }
+
+  .players-wrapper {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }

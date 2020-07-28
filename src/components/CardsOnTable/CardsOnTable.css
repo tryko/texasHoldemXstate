@@ -2,18 +2,8 @@
   display: flex;
 }
 
-.playing-cards {
-  display: flex;
-  justify-content: space-between;
-}
-
 .card-wrapper{
   margin-left: 20px;
 }
 
-.discarded-cards {
-  height: 157px;
-  width: 115px;
-  padding: 6px;
-  margin-right: 50px;
-}
+
