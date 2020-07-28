@@ -1,16 +1,3 @@
 .flex-wrapper {
     height: fit-content;
   }
-
-  .deck-wrapper {
-    display: flex;
-    align-self: center;
-    width: fit-content;
-    height: fit-content;
-  }
-
-  .players-wrapper {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-  }

@@ -1,12 +1,12 @@
 import React from "react"
 import "./DiscardPile.css"
 
-import Card from "../Card/Card"
+import Card from "./../../Card/Card"
 const DiscardPile = ({ discardPile, backFace}) => {
   return (
     <div className="discarded-cards">
       {discardPile.map((card, i) => (
-        <Card key={card.id} backFace={backFace.fileName} cardIndex={i} />
+        <Card key={card.id} backFace={backFace.fileName} cardIndex={i} pos="absolute"/>
       ))}
     </div>
   )

@@ -2,12 +2,11 @@ import React from "react"
 import "./DeckCards.css"
 
 import Card from "./../../Card/Card"
-const DeckCards = ({ deck, backFace}) => {
-
+const DeckCards = ({ deck, backFace }) => {
   return (
     <div className="card-place">
       {deck.map((card, i) => {
-        return <Card key={card.id} backFace={backFace.fileName} cardIndex={i} />
+        return <Card key={card.id} backFace={backFace.fileName} cardIndex={i} pos="absolute"/>
       })}
     </div>
   )

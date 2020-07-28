@@ -1,7 +1,7 @@
 import React from "react"
 import "./Community.css"
 
-import Card from "../Card/Card"
+import Card from "../../Card/Card"
 const Community = ({ communityCards }) => {
   return (
     <div className="playing-cards">
