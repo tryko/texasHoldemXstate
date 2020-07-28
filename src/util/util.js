@@ -15,23 +15,6 @@ const cardValues = [
 ];
 const cardSuits = ["H", "D", "C", "S"];
 
-const createCardProps = (card, i, cardsLength) => {
-  const cardProps = {
-    key: card.id,
-    name: card.value + card.suit,
-    inLineStyle: {
-      marginTop: i * 0.5 + "px",
-      marginLeft: i * 0.5 + "px",
-      position: "absolute",
-      zIndex: i,
-    },
-    onClick: (setIsFaceUp) => {
-      if (i === cardsLength - 1) setIsFaceUp((prevState) => !prevState);
-    },
-  };
-  return cardProps;
-};
-
 const getCards = () => {
   const cards = setDeck();
   const deck = getFileNames(cards);
@@ -71,6 +54,7 @@ function makeid(length = 7) {
 
 const setDeck = () => {
   const cards = [];
+  const backFace = {id:makeid(), value:'1', suit:"B", name:"1B"}
   for (let i = 0; i < 52; i++) {
     const card = {};
     card.id = makeid();
@@ -79,7 +63,8 @@ const setDeck = () => {
     card.name = card.value + card.suit;
     cards.push(card);
   }
-  return cards;
+  
+  return [...cards, backFace];
 };
 
 function shuffle(array) {
@@ -92,4 +77,4 @@ function shuffle(array) {
   return [...array];
 }
 
-export { createCardProps, getCards, getFileName, makeid, setDeck, shuffle };
+export { getCards, getFileName, makeid, setDeck, shuffle };

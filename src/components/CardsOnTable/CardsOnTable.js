@@ -7,21 +7,13 @@ const CardsOnTable = ({ backFace, discardPile, communityCards }) => {
     <div className="round-cards">
       <div className="discarded-cards">
         {discardPile.map((card, i) => (
-          <Card
-            key={card.id}
-            backFace={backFace}
-            inLineStyle={{
-              marginLeft: i * 4.5 + "px",
-              position: "absolute",
-              zIndex: i
-            }}
-          />
+          <Card key={card.id} backFace={backFace.fileName} cardIndex={i} />
         ))}
       </div>
       <div className="playing-cards">
         {communityCards.map((card) => (
           <div className="card-wrapper" key={card.id}>
-            <Card  name={card.value + card.suit} backFace={card.fileName} />
+            <Card name={card.value + card.suit} backFace={card.fileName} />
           </div>
         ))}
       </div>

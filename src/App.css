@@ -10,27 +10,4 @@ body {
   flex-direction: column;
 }
 
-.deck-wrapper {
-  display: flex;
-  align-self: center;
-  width: fit-content;
-  height: fit-content;
-}
 
-.players-wrapper {
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-}
-
-.btn-container {
-  display: flex;
-  align-self: center;
-  flex-direction: column;
-  width: 100px;
-  height: 100%;
-}
-
-.addonMargin {
-  margin-left: 100px;
-}

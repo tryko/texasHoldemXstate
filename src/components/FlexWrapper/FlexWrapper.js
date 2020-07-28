@@ -1,8 +1,12 @@
 import React from "react"
 import "./FlexWrapper.css"
 
-const FlexWrapper = ({ children }) => {
-  return <div className="flex-wrapper">{children}</div>
+const FlexWrapper = ({ children, isDeck}) => {
+  return (
+    <div className="flex-wrapper">
+      <div className={isDeck? "deck-wrapper" : ""}>{children}</div>
+    </div>
+  )
 }
 
 export default FlexWrapper

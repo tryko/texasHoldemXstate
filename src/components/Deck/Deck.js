@@ -1,30 +1,31 @@
 import React from "react"
+import FlexWrapper from "./../FlexWrapper/FlexWrapper"
+import Control from "./../GameControl/Control"
+import GameControl from "./../GameControl/GameControl"
 import "./Deck.css"
-import Card from "../Card/Card"
 
-const Deck = ({ cards, backFace }) => {
-  const createCardProps = (card, i, cardsLength) => {
-    const cardProps = {
-      key: card.id,
-      frontFace: card.fileName,
-      inLineStyle: {
-        marginTop: i * 0.5 + "px",
-        marginLeft: i * 0.5 + "px",
-        position: "absolute",
-        zIndex: i,
-      },
-      backFace: backFace,
-    }
-    if (i === cardsLength - 1) cardProps.onClick = (setIsFaceUp) => setIsFaceUp((prevState) => !prevState)
-    return cardProps
+import Card from "../Card/Card"
+const Deck = ({ deck, backFace, name, send }) => {
+  const handleDraw = (e) => {
+    if (deck.length) send("DRAW")
+  }
+
+  const handleShuffle = () => {
+    if (deck.length) send("SHUFFLE")
   }
 
   return (
-    <div className="card-place">
-      {cards.map((card, i) => {
-        return <Card {...createCardProps(card, i, cards.length)} />
-      })}
-    </div>
+    <FlexWrapper isDeck>
+      <div className="card-place">
+        {deck.map((card, i) => {
+          return <Card key={card.id} backFace={backFace.fileName} cardIndex={i} />
+        })}
+      </div>
+      <GameControl>
+        <Control name={name} func={handleDraw} />
+        <Control name="shuffle" func={handleShuffle} />
+      </GameControl>
+    </FlexWrapper>
   )
 }
 

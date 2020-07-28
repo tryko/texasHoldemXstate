@@ -1,3 +1,10 @@
 .flex-wrapper {
     height: fit-content;
   }
+
+  .deck-wrapper {
+    display: flex;
+    align-self: center;
+    width: fit-content;
+    height: fit-content;
+  }

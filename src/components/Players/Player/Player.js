@@ -1,10 +1,8 @@
 import React from "react";
 import "./Player.css";
-import "./../../assets/main.css";
-import Card from "../Card/Card";
+import Card from "../../Card/Card";
 
-const Player = ({ name, cards, id, backFace }) => {
-  
+const Player = ({ name, cards, backFace }) => {
   return (
     <div>
       <div className="hand-place">
@@ -15,7 +13,7 @@ const Player = ({ name, cards, id, backFace }) => {
             onClick={(setIsFaceUp) => {
               setIsFaceUp((prevState) => !prevState);
             }}
-            backFace={backFace}
+            backFace={backFace.fileName}
             frontFace={card.fileName}
           />
         ))}

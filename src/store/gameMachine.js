@@ -5,14 +5,15 @@ import { dealToPlayers, drawCommunityAndDiscard } from "./actions"
 
 async function invokeGetCards() {
   const cards = await getCards()
-  const shuffledCards = shuffle(cards)
-  return shuffledCards
+
+  return cards
 }
 
 export const gameMachine = Machine({
   id: "gameMachineID",
   initial: "start",
   context: {
+    backFace: "",
     deck: [],
     discardPile: [],
     players: players,
@@ -39,9 +40,10 @@ export const gameMachine = Machine({
         src: invokeGetCards,
         onDone: {
           target: "deal",
-          actions: assign({
-            deck: (_, event) => {
-              return event.data
+          actions: assign((_, event) => {
+            return {
+              backFace: event.data.pop(),
+              deck: shuffle(event.data)
             }
           })
         }
