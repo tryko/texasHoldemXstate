@@ -5,7 +5,7 @@ import "./CardsOnTable.css"
 
 const CardsOnTable = ({ backFace, discardPile, communityCards }) => {
   return (
-    <div className="round-cards">
+    <div className="flex">
       <DiscardPile discardPile={discardPile} backFace={backFace} />
       <Community communityCards={communityCards} />
     </div>
