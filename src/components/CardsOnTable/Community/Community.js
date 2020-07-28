@@ -1,14 +1,12 @@
 import React from "react"
 import "./Community.css"
-
 import Card from "../../Card/Card"
+
 const Community = ({ communityCards }) => {
   return (
-    <div className="playing-cards">
+    <div className="flex justify-between">
       {communityCards.map((card) => (
-        <div className="card-wrapper" key={card.id}>
-          <Card backFace={card.fileName} />
-        </div>
+        <Card key={card.id} backFace={card.fileName} marginLeft="ml-6" />
       ))}
     </div>
   )

@@ -2,7 +2,7 @@ import React, { useState } from "react"
 import classnames from "classnames"
 import "./Card.css"
 
-const Card = ({ backFace, cardIndex, frontFace, pos }) => {
+const Card = ({ backFace, cardIndex, frontFace, pos, marginLeft }) => {
   const [isFaceUp, setIsFaceUp] = useState(false)
 
   const createInline = (i) => {
@@ -18,7 +18,7 @@ const Card = ({ backFace, cardIndex, frontFace, pos }) => {
     if (frontFace) setIsFaceUp((prevValue) => !prevValue)
   }
   const zIndex = cardIndex ? `z-${cardIndex}` : ""
-  const cardClassName = classnames("flip-card", zIndex, pos )
+  const cardClassName = classnames("flip-card", zIndex, pos, marginLeft )
   return (
     <div className={cardClassName} style={createInline(cardIndex)} onClick={handleClick}>
       <div className={`flip-card-inner  ${isFaceUp ? "flip-it" : ""}`}>
